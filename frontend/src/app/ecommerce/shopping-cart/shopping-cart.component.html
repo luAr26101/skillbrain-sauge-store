@@ -1,0 +1,27 @@
+<div class="sb-card sb-cart-card">
+    <div class="sb-card-header">
+        <div>
+            <p class="sb-card-eyebrow">Cos</p>
+            <h3 class="sb-card-title">Comanda ta</h3>
+        </div>
+        <span class="sb-badge">{{ orders.productOrders.length }}</span>
+    </div>
+    <div class="sb-card-body">
+        <div class="sb-total-line">
+            <span>Total</span>
+            <strong>{{ total }} lei</strong>
+        </div>
+        <p class="sb-muted">Produse in cos</p>
+
+        <ul class="sb-list">
+            <li *ngFor="let order of orders.productOrders">
+                <span>{{ order.product.name }}</span>
+                <span class="sb-pill">{{ order.quantity }} buc.</span>
+            </li>
+        </ul>
+
+        <button class="btn btn-primary btn-block sb-btn" (click)="finishOrder()"
+                [disabled]="orders.productOrders.length == 0">Finalizeaza comanda
+        </button>
+    </div>
+</div>

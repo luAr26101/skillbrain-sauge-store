@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark sb-nav fixed-top">
+    <div class="container sb-nav-inner">
+        <a class="navbar-brand sb-brand" href="#">SkillBrain Deli</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarResponsive" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link sb-nav-link" href="#" (click)="reset()">Catalog
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="sb-page container">
+    <section class="sb-hero">
+        <div class="sb-hero-copy">
+            <p class="sb-eyebrow">SkillBrain x Deli</p>
+            <h1>Gust rapid, comanda clara.</h1>
+            <p class="sb-hero-text">
+                Selectie de carnati artizanali, pachete curate si flux complet de comanda pentru demo SkillBrain.
+            </p>
+            <div class="sb-hero-actions">
+                <button class="btn btn-primary sb-hero-btn" (click)="reset()">Vezi produsele</button>
+                <span class="sb-hero-note">Livrare rapida, stoc actualizat zilnic.</span>
+            </div>
+        </div>
+        <div class="sb-hero-card">
+            <div class="sb-hero-metric">
+                <span class="sb-hero-value">6</span>
+                <span class="sb-hero-label">retete</span>
+            </div>
+            <div class="sb-hero-metric">
+                <span class="sb-hero-value">15</span>
+                <span class="sb-hero-label">minute ridicare</span>
+            </div>
+            <div class="sb-hero-metric">
+                <span class="sb-hero-value">100%</span>
+                <span class="sb-hero-label">lot proaspat</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="sb-layout" [class.sb-hidden]="orderFinished">
+        <div class="sb-products">
+            <app-products #productsC [hidden]="orderFinished"></app-products>
+        </div>
+        <div class="sb-cart">
+            <app-shopping-cart (onOrderFinished)=finishOrder($event) #shoppingCartC
+                               [hidden]="orderFinished"></app-shopping-cart>
+        </div>
+    </div>
+
+    <div class="sb-orders" [hidden]="!orderFinished">
+        <app-orders #ordersC></app-orders>
+    </div>
+</div>

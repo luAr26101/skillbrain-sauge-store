@@ -1,0 +1,23 @@
+<div class="sb-products-grid">
+    <div class="sb-product-card" *ngFor="let order of productOrders">
+        <div class="sb-product-header">
+            <h4 class="sb-product-title">{{order.product.name}}</h4>
+            <span class="sb-product-price">{{order.product.price}} lei</span>
+        </div>
+        <div class="sb-product-media">
+            <img class="sb-product-image" src={{order.product.pictureUrl}} alt="">
+        </div>
+        <div class="sb-product-actions">
+            <div class="sb-quantity" *ngIf="!isProductSelected(order.product)">
+                <label class="sb-quantity-label">Cantitate</label>
+                <input type="number" min="1" class="form-control sb-quantity-input" [(ngModel)]=order.quantity>
+            </div>
+            <button class="btn btn-primary sb-btn" (click)="addToCart(order)"
+                    [disabled]="order.quantity <= 0" *ngIf="!isProductSelected(order.product)">Adauga in cos
+            </button>
+            <button class="btn btn-outline sb-btn" *ngIf="isProductSelected(order.product)"
+                    (click)="removeFromCart(order)">Scoate din cos
+            </button>
+        </div>
+    </div>
+</div>

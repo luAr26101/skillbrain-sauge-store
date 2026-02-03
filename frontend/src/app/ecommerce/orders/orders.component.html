@@ -1,0 +1,26 @@
+<div class="sb-card sb-orders-card">
+    <div class="sb-card-header">
+        <div>
+            <p class="sb-card-eyebrow">Finalizare</p>
+            <h2 class="sb-section-title">Plasarea comenzii</h2>
+        </div>
+    </div>
+    <div class="sb-card-body">
+        <ul class="sb-list">
+            <li *ngFor="let order of orders.productOrders">
+                <span>{{ order.product.name }}</span>
+                <span class="sb-pill">{{ order.product.price }} lei x {{ order.quantity }} buc.</span>
+            </li>
+        </ul>
+        <div class="sb-total-line">
+            <span>Cost total</span>
+            <strong>{{ total }} lei</strong>
+        </div>
+
+        <button class="btn btn-primary btn-block sb-btn" (click)="pay()" *ngIf="!paid">Plateste</button>
+
+        <div class="sb-alert" role="alert" *ngIf="paid">
+            <strong>Excelent!</strong> Comanda a fost inregistrata.
+        </div>
+    </div>
+</div>
